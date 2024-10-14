@@ -394,15 +394,15 @@ class MvcController
 
             if (
                 !empty($_POST["codigoProducto"]) && !empty($_POST["nombreProducto"])
-                && !empty($_POST["descripcion"]) && !empty($_POST["stock"])
+                && !empty($_POST["descripcion"]) && !empty($_POST["stock"] || empty($_POST["stock"]))
                 && !empty($_POST["precio"]) && !empty($_SESSION["id_usuario"])
             ) {
 
                 if (
                     preg_match('/^[A-Za-z0-9\s\-\_\.\()]{3,4}$/', $_POST["codigoProducto"]) &&
                     preg_match('/^[A-Za-z0-9\s]{3,100}$/', $_POST["nombreProducto"]) &&
-                    preg_match('/^[A-Za-z0-9\s\-\_\.\()\,]{3,100}$/', $_POST["descripcion"]) &&
-                    preg_match('/^[A-Za-z0-9\s\-\_\.\()\,]{1,10000}$/', $_POST["stock"]) &&
+                    preg_match('/^[A-Za-z0-9\s\-\_\.\()\,\%#]{2,100}$/', $_POST["descripcion"]) &&
+                    preg_match('/^[A-Za-z0-9\s\-\_\.\()\,]{0,10000}$/', $_POST["stock"]) &&
                     preg_match('/^[A-Za-z0-9\s]{1,10000}$/', $_POST["precio"]) &&
                     preg_match('/^[0-9]{1,20}$/', $_SESSION["id_usuario"])
                 ) {
@@ -440,7 +440,7 @@ class MvcController
         }
     }
 
-    # Mostrar a los empleados
+    # Mostrar los productos
     public static function mostrarProductosController()
     {
 
@@ -487,7 +487,7 @@ class MvcController
         }
     }
 
-    # Traer la vista para editar a un empleado
+    # Traer la vista para editar a un producto
     public static function editarProductoController()
     {
 
@@ -543,7 +543,7 @@ class MvcController
         }
     }
 
-    # Actualizar a un empleado
+    # Actualizar un producto
     public static function actualizarProductoController()
     {
 
@@ -555,7 +555,7 @@ class MvcController
 
             if (
                 !empty($_POST["id"]) && !empty($_POST["codigoProducto"]) && !empty($_POST["nombreProducto"])
-                && !empty($_POST["descripcion"]) && !empty($_POST["stock"])
+                && !empty($_POST["descripcion"]) && !empty($_POST["stock"]) || empty($_POST["stock"])
                 && !empty($_POST["precio"])
             ) {
 
@@ -563,8 +563,8 @@ class MvcController
                     preg_match('/^[0-9]{1,20}$/', $_POST["id"]) &&
                     preg_match('/^[A-Za-z0-9\s\-\_\.\()]{3,4}$/', $_POST["codigoProducto"]) &&
                     preg_match('/^[A-Za-z0-9\s]{3,100}$/', $_POST["nombreProducto"]) &&
-                    preg_match('/^[A-Za-z0-9\s\-\_\.\()\,]{3,100}$/', $_POST["descripcion"]) &&
-                    preg_match('/^[A-Za-z0-9\s\-\_\.\()\,]{1,10000}$/', $_POST["stock"]) &&
+                    preg_match('/^[A-Za-z0-9\s\-\_\.\()\,\%#]{2,100}$/', $_POST["descripcion"]) &&
+                    preg_match('/^[A-Za-z0-9\s\-\_\.\()\,]{0,10000}$/', $_POST["stock"]) &&
                     preg_match('/^[A-Za-z0-9\s]{1,10000}$/', $_POST["precio"])
                 ) {
 
@@ -602,7 +602,7 @@ class MvcController
         }
     }
 
-    # Borrar a un empleado
+    # Borrar un producto
     public static function borrarProductoController()
     {
 
