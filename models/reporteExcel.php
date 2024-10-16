@@ -1,19 +1,16 @@
 <?php
 
-header("Content-Type: application/xls"); // Declaramos el tipo de archivo
-header("Content-Disposition: attachment; filename= Reporte de Productos.xls"); // Nombramos el archivo junto con su extension
+session_start();
 
-$archivoImagen = "C:\Users\XPC\OneDrive\Escritorio\LOGOTIPO.png";
-?>
+if (isset($_SESSION)) {
+	if (isset($_SESSION["sesionIniciada"])) {
+		if ($_SESSION["sesionIniciada"]) {
+			header("Content-Type: application/xls"); // Declaramos el tipo de archivo
+			header("Content-Disposition: attachment; filename= Reporte de Productos.xls"); // Nombramos el archivo junto con su extension
+			
+			$archivoImagen = "C:\Users\XPC\OneDrive\Escritorio\LOGOTIPO.png";
+			?>
 
-<!-- <div class="container-fluid page-body-wrapper">
-	<div class="main-panel forma">
-		<div class="content-wrapper">
-			<div class="row">
-				<div class="col-lg-10 grid-margin stretch-card">
-					<div class="card"> -->
-<!-- <form> -->
-<!-- <div class="card-body"> -->
 <style>
 	.tabla {
 		border-style: solid;
@@ -25,7 +22,6 @@ $archivoImagen = "C:\Users\XPC\OneDrive\Escritorio\LOGOTIPO.png";
 		font-size: 25px;
 	}
 </style>
-
 <img src=<?php echo ' ' . $archivoImagen . ' '; ?>>
 <br>
 <br>
@@ -48,8 +44,7 @@ $archivoImagen = "C:\Users\XPC\OneDrive\Escritorio\LOGOTIPO.png";
 			<th style="border-style: solid;" class="titulos">Precio</th>
 		</tr>
 	</thead>
-
-
+	
 	<?php
 	include("./conexion.php");
 	include('./crud.php');
@@ -69,3 +64,15 @@ $archivoImagen = "C:\Users\XPC\OneDrive\Escritorio\LOGOTIPO.png";
 	</tr>
  ';
 	}
+		} else {
+			header("Location: ../index.php");
+      		exit();
+		}
+	}
+}
+
+
+
+
+
+	
