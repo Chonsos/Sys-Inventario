@@ -12,12 +12,11 @@ if (isset($_SESSION)) {
    if (isset($_SESSION["sesionIniciada"])) {
       if ($_SESSION["sesionIniciada"]) {
          class PDF extends FPDF
-         {
-
+         {      
             // Cabecera de página
             function Header()
             {
-
+               
                $this->Image('cleanLogo.png', 80, 5, 60); // logo de la empresa,moverDerecha,moverAbajo,tamañoIMG
                $this->SetFont('Arial', 'B', 19); // tipo fuente, negrita(B-I-U-BIU), tamañoTexto
                $this->Cell(45); // Movernos a la derecha
@@ -80,7 +79,8 @@ if (isset($_SESSION)) {
             $pdf->Cell(20, 10, utf8_decode($value["stock"]), 1, 0, '. C .', 0);
             $pdf->Cell(25, 10, utf8_decode($value["precio"]), 1, 1, '. C .', 0);
          }
-
+         
+        
          $pdf->Output('Reporte de Productos.pdf', 'I');  //nombreDescarga, Visor(I->visualizar - D->descargar)
       }
    } else {
@@ -88,3 +88,4 @@ if (isset($_SESSION)) {
       exit();
    }
 } 
+?>
