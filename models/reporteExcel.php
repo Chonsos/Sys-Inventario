@@ -1,3 +1,4 @@
+<title>Reporte en Excel</title>
 <?php
 
 session_start();
